@@ -2,16 +2,18 @@ import { compareNumbers } from './utils.js';
 
 const input = document.getElementById('input');
 const button = document.getElementById('button');
+const resetButton = document.getElementById('reset-button');
 const chances = document.getElementById('chances');
 const message = document.getElementById('message');
 
 let correctNumber = Math.ceil(Math.random()*20);
-console.log(correctNumber)
-let chancesNumber = 5
+console.log(correctNumber);
+let chancesNumber = 5;
 
 button.addEventListener('click', () => {
     const guess = Number(input.value);
     const result = compareNumbers(guess, correctNumber);
+    
     if (result === 1) {
         chancesNumber--;
         chances.textContent = `You have ${chancesNumber} chances left!`
@@ -22,6 +24,14 @@ button.addEventListener('click', () => {
         message.textContent = 'Too Low!';
     } else {
         chances.textContent = 'You win!'
-        message.textContent = 'Correct!';
+        message.textContent = 'Correct!'
+        button.style.display='none';
+        ;
     } 
+
+    if (chancesNumber <= 0) {
+        chances.textContent = 'Game Over.'
+        button.style.display='none'
+        resetButton.classList.remove('hidden')
+    }
 })
