@@ -28,6 +28,7 @@ button.addEventListener('click', () => {
         message.textContent = 'Correct!'
         button.style.display='none';
         trophy.classList.remove('hidden');
+        resetButton.classList.remove('hidden');
     } 
     if (chancesNumber <= 0) {
         chances.textContent = 'Game Over.';
