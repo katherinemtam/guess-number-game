@@ -1,5 +1,37 @@
-// import functions and grab DOM elements
+import { compareNumbers } from './utils.js';
 
-// initialize state
+const input = document.getElementById('input');
+const button = document.getElementById('button');
+const resetButton = document.getElementById('reset-button');
+const chances = document.getElementById('chances');
+const message = document.getElementById('message');
+const trophy = document.getElementById('trophy');
 
-// set event listeners to update state and DOM
+let correctNumber = Math.ceil(Math.random()*20);
+console.log(correctNumber);
+let chancesNumber = 5;
+
+button.addEventListener('click', () => {
+    const guess = Number(input.value);
+    const result = compareNumbers(guess, correctNumber);
+    
+    if (result === 1) {
+        chancesNumber--;
+        chances.textContent = `You have ${chancesNumber} chances left!`
+        message.textContent = 'Too High!'
+    } else if (result === -1) {
+        chancesNumber--;
+        chances.textContent = `You have ${chancesNumber} chances left!`
+        message.textContent = 'Too Low!';
+    } else {
+        chances.textContent = 'You win!'
+        message.textContent = 'Correct!'
+        button.style.display='none';
+        trophy.classList.remove('hidden');
+    } 
+    if (chancesNumber <= 0) {
+        chances.textContent = 'Game Over.';
+        button.style.display='none';
+        resetButton.classList.remove('hidden');
+    }
+})
