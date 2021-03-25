@@ -5,6 +5,7 @@ const button = document.getElementById('button');
 const resetButton = document.getElementById('reset-button');
 const chances = document.getElementById('chances');
 const message = document.getElementById('message');
+const trophy = document.getElementById('trophy');
 
 let correctNumber = Math.ceil(Math.random()*20);
 console.log(correctNumber);
@@ -26,12 +27,11 @@ button.addEventListener('click', () => {
         chances.textContent = 'You win!'
         message.textContent = 'Correct!'
         button.style.display='none';
-        ;
+        trophy.classList.remove('hidden');
     } 
-
     if (chancesNumber <= 0) {
-        chances.textContent = 'Game Over.'
-        button.style.display='none'
-        resetButton.classList.remove('hidden')
+        chances.textContent = 'Game Over.';
+        button.style.display='none';
+        resetButton.classList.remove('hidden');
     }
 })
