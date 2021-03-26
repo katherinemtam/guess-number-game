@@ -7,32 +7,31 @@ const chances = document.getElementById('chances');
 const message = document.getElementById('message');
 const trophy = document.getElementById('trophy');
 
-let correctNumber = Math.ceil(Math.random()*20);
-console.log(correctNumber);
+let correctNumber = Math.ceil(Math.random() * 20);
 let chancesNumber = 5;
 
 button.addEventListener('click', () => {
     const guess = Number(input.value);
     const result = compareNumbers(guess, correctNumber);
-    
+
     if (result === 1) {
         chancesNumber--;
-        chances.textContent = `You have ${chancesNumber} chances left!`
-        message.textContent = 'Too High!'
+        chances.textContent = `You have ${chancesNumber} chances left!`;
+        message.textContent = 'Too High!';
     } else if (result === -1) {
         chancesNumber--;
-        chances.textContent = `You have ${chancesNumber} chances left!`
+        chances.textContent = `You have ${chancesNumber} chances left!`;
         message.textContent = 'Too Low!';
     } else {
-        chances.textContent = 'You win!'
-        message.textContent = 'Correct!'
-        button.style.display='none';
+        chances.textContent = 'You win!';
+        message.textContent = 'Correct!';
+        button.style.display = 'none';
         trophy.classList.remove('hidden');
         resetButton.classList.remove('hidden');
-    } 
+    }
     if (chancesNumber <= 0) {
         chances.textContent = 'Game Over.';
-        button.style.display='none';
+        button.style.display = 'none';
         resetButton.classList.remove('hidden');
     }
-})
+});
